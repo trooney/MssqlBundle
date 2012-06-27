@@ -2,7 +2,7 @@
 
 namespace Realestate\MssqlBundle\Schema;
 
-use Doctrine\DBAL\Schema\MsSqlSchemaManager;
+use Doctrine\DBAL\Schema\SQLServerSchemaManager;
 
 /**
  * Schema manager for the MsSql/Dblib RDBMS.
@@ -17,21 +17,14 @@ use Doctrine\DBAL\Schema\MsSqlSchemaManager;
  * @since       2.0
  */
 
-class DblibSchemaManager extends MsSqlSchemaManager
+class DblibSchemaManager extends SQLServerSchemaManager
 {
-
-
-  
-   
-
     protected function _getPortableSequenceDefinition($sequence)
     {
         return end($sequence);
     }
 
-   
-
-     protected function _getPortableTableForeignKeysList($tableForeignKeys)
+    protected function _getPortableTableForeignKeysList($tableForeignKeys)
     {
         $list = array();
         foreach ($tableForeignKeys as $key => $value) {
@@ -75,6 +68,7 @@ class DblibSchemaManager extends MsSqlSchemaManager
         }
         return $this->_conn->standaloneQuery($query, null, true);
     }
+
     /**
      * alter an existing table
      *
@@ -229,6 +223,7 @@ class DblibSchemaManager extends MsSqlSchemaManager
         }
         return true;
     }
+
     /**
      * lists all database sequences
      *
