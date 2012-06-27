@@ -1,3 +1,23 @@
+Install
+-------
+
+Add the **isoft/mssql-bundle** into **composer.json**
+
+    "require": {
+        ....
+        "isoft/mssql-bundle": "master-dev"
+    },
+
+Usage
+-----
+
+Add to section doctrine - dbal in **config.yml** option **driver_class**
+
+    doctrine:
+        dbal:
+            driver:         %database_driver%
+            driver_class:   \Realestate\MssqlBundle\Driver\PDODblib\Driver
+
 *************************
 In Doctrine\DBAL\DriverManager's $_driverMap property, add this driver to the list:
 
@@ -12,7 +32,7 @@ tds version = 4.2
 to
 tds version = 8.0
 
-********************&****
+************************
 can't use nvarchar!!
 
 
