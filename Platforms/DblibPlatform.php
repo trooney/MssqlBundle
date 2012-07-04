@@ -25,7 +25,7 @@ use Doctrine\DBAL\DBALException,
     Doctrine\DBAL\Schema\TableDiff;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Platforms\SQLServerPlatform;
+use Doctrine\DBAL\Platforms\MsSqlPlatform;
 
 /**
  * The DblibPlatform provides the behavior, features and SQL dialect of the
@@ -36,7 +36,7 @@ use Doctrine\DBAL\Platforms\SQLServerPlatform;
  * @author Roman Borschel <roman@code-factory.org>
  * @author Benjamin Eberlei <kontakt@beberlei.de>
  */
-class DblibPlatform extends SQLServerPlatform
+class DblibPlatform extends MsSqlPlatform
 {
 
     /**

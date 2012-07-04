@@ -2,7 +2,7 @@
 
 namespace Realestate\MssqlBundle\Schema;
 
-use Doctrine\DBAL\Schema\SQLServerSchemaManager;
+use Doctrine\DBAL\Schema\MsSqlSchemaManager;
 
 /**
  * Schema manager for the MsSql/Dblib RDBMS.
@@ -17,7 +17,7 @@ use Doctrine\DBAL\Schema\SQLServerSchemaManager;
  * @since       2.0
  */
 
-class DblibSchemaManager extends SQLServerSchemaManager
+class DblibSchemaManager extends MsSqlSchemaManager
 {
     protected function _getPortableSequenceDefinition($sequence)
     {
