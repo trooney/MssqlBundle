@@ -58,7 +58,16 @@ class DblibPlatform extends SQLServerPlatform
     {
         return false;
     }
-    
+
+    /**
+     * @override
+     * @return boolean
+     */
+    public function supportsLimitOffset()
+    {
+        return true;
+    }
+
 
     /**
      * Adds an adapter-specific LIMIT clause to the SELECT statement.
@@ -89,6 +98,10 @@ class DblibPlatform extends SQLServerPlatform
 
                 
             } else {
+                
+                // Remove DISTINCT clause from $query
+                $query = preg_replace('/\s+DISTINCT/', '', $query);
+
                 $orderby = stristr($query, 'ORDER BY');
 
                 if (!$orderby) {
