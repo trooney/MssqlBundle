@@ -1,27 +1,60 @@
-*************************
-In Doctrine\DBAL\DriverManager's $_driverMap property, add this driver to the list:
+MssqlBundle
+------------
 
-    'pdo_dblib' => 'Realestate\DBAL\Driver\PDODblib\Driver',
+This bundle implements a pdo_dblib based Microsft SQL Server. The original bundle was forked from https://github.com/intellectsoft-uk/MssqlBundle.
+
+Symfony Install
+---------------
+
+Add the **trooney/mssql-bundle** into **composer.json**
+
+    "require": {
+        ....
+        "trooney/mssql-bundle": "master-dev"
+    },
+
+Symfony Configuration
+------------------
+
+Update the doctrine section of your **config.yml** to include the option **driver_class**
+
+    doctrine:
+        dbal:
+            driver:         %database_driver%
+            driver_class:   \NRC\MssqlBundle\Driver\PDODblib\Driver
 
 
-*************************
-This driver requires version 8.0 (from http://www.ubuntitis.com/?p=64) as default 4.2 version does not have UTF support
+FreeTDS Configuration
+=====================
 
-In /etc/freetds/freetds.conf, change
-tds version = 4.2
-to
-tds version = 8.0
+DBLib requires FreeTDS. Your **freetds.conf** connection configured should look something like following:
 
-********************&****
-can't use nvarchar!!
+```
+[mssql_freetds]
+    host = 172.30.252.25
+    port = 1433
+    tds version = 8.0
+    client charset = UTF-8
+    text size = 20971520
 
-
-*************************
-In SQL 2000 SP4 or newer, SQL 2005 or SQL 2008, if you do a query that returns NTEXT type data, you may encounter the following exception:
-_mssql.MssqlDatabaseError: SQL Server message 4004, severity 16, state 1, line 1:
-Unicode data in a Unicode-only collation or ntext data cannot be sent to clients using DB-Library (such as ISQL) or ODBC version 3.7 or earlier.
-
-It means that SQL Server is unable to send Unicode data to FTREETDS, because of shortcomings of FTREETDS. You have to CAST or CONVERT the data to equivalent NVARCHAR data type, which does not exhibit this behaviour.
+```
 
 
+Putting everything together
+===========================
 
+Getting everything together wasn't easy. You need to complete the following steps, checking each installation is successful by connecting with the appropriate tools:
+
+* Install FreeTDS and configure a server connection
+    * *Verify* with ./tsql -S mssql_freetds -U yourusername -P yourpassword
+* Install the PHP DBLib extension -- verify with PHP script containing
+    * *Verify* $pdo = new PDO('dblib:host=mssql_freetds;dbname=yourdb', 'yourusername', 'yourpassword');
+* Install and configure the PDODblibBundle
+    * *Verify* Some kind of SQL against your database
+
+
+Notes
+=====
+
+- This driver requires FreeTDS version 8.0 (from http://www.ubuntitis.com/?p=64)
+- You cannot use nvarchar

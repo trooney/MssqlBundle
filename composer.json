@@ -1,20 +1,22 @@
 {
-    "name": "isoft/mssql-bundle",
-    "description": "Driver for work with MsSQL server",
+    "name": "trooney/mssql-bundle",
+    "type":"symfony-bundle",
+    "description": "Driver for work with Microsoft SQL Server using PDO_DBLIB",
     "authors": [
-        {
-            "name": "Realestate"
-        },
         {
             "name": "Vitaly Zhloba",
             "email": "vitaly.zhloba@gmail.com"
+        },
+        {
+            "name":"Tyler Rooney",
+            "email":"tyler@tylerrooney.ca"
         }
     ],
     "require": {},
     "autoload": {
         "psr-0": {
-            "Realestate\\MssqlBundle": ""
+            "NRC\\MssqlBundle": ""
         }
     },
-    "target-dir": "Realestate/MssqlBundle"
+    "target-dir": "NRC/MssqlBundle"
 }

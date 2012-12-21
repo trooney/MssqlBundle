@@ -10,8 +10,8 @@
  * @author Scott Morken <scott.morken@pcmail.maricopa.edu>
  */
 
-namespace Realestate\MssqlBundle\Driver\PDODblib;
-use Realestate\MssqlBundle\Platforms\DblibPlatform;
+namespace NRC\MssqlBundle\Driver\PDODblib;
+use NRC\MssqlBundle\Platforms\DblibPlatform;
 
 class Driver implements \Doctrine\DBAL\Driver
 {
@@ -94,7 +94,7 @@ class Driver implements \Doctrine\DBAL\Driver
 
     public function getSchemaManager(\Doctrine\DBAL\Connection $conn)
     {
-        return new \Realestate\MssqlBundle\Schema\DblibSchemaManager($conn);
+        return new \MssqlBundle\Schema\DblibSchemaManager($conn);
     }
 
     public function getName()

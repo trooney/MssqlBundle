@@ -17,7 +17,7 @@
  * <http://www.doctrine-project.org>.
  */
 
-namespace Realestate\MssqlBundle\Driver\PDODblib;
+namespace NRC\MssqlBundle\Driver\PDODblib;
 
 use Doctrine\DBAL\Driver\Connection as DriverConnection;
 

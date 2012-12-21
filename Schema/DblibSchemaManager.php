@@ -1,6 +1,6 @@
 <?php
 
-namespace Realestate\MssqlBundle\Schema;
+namespace NRC\MssqlBundle\Schema;
 
 use Doctrine\DBAL\Schema\SQLServerSchemaManager;
 
